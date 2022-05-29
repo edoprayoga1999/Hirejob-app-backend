@@ -10,6 +10,7 @@ const userRoute = require('./src/router/user.route')
 const skillRoute = require('./src/router/skill.route')
 const portofolioRoute = require('./src/router/portofolio.route')
 const experienceRoute = require('./src/router/experience.route')
+const recruiterRoute = require('./src/router/recruiter.route')
 
 const app = express()
 app.use(cors())
@@ -24,6 +25,7 @@ app.use(userRoute)
 app.use(skillRoute)
 app.use(portofolioRoute)
 app.use(experienceRoute)
+app.use(recruiterRoute)
 
 app.use(express.static('public'))
 
