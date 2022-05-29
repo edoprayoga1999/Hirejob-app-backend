@@ -8,6 +8,6 @@ const upload = require('../middleware/upload')
 router
   .put('/recruiter/update', jwtAuth, isCompany, updateRecruiterData)
   .put('/recruiter/update/photo', jwtAuth, isCompany, upload, updatePhoto)
-  .get('/recruiter/:id', jwtAuth, getRecruiterDetailById)
   .get('/recruiter/myprofile', jwtAuth, isCompany, getMyProfile)
+  .get('/recruiter/:id', jwtAuth, getRecruiterDetailById)
 module.exports = router
