@@ -32,6 +32,17 @@ const recruiterModel = {
         }
       })
     })
+  },
+  updateEmail: (id, email) => {
+    return new Promise((resolve, reject) => {
+      db.query('UPDATE login SET email=$2 WHERE id=$1', [id, email], (err, result) => {
+        if (err) {
+          reject(err)
+        } else {
+          resolve(result)
+        }
+      })
+    })
   }
 }
 module.exports = recruiterModel
