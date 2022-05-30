@@ -67,6 +67,26 @@ const chatController = {
         error: err
       })
     }
+  },
+  infoLanding: (req, res) => {
+    try {
+      chatModel.landingInfo()
+        .then((result) => {
+          success(res, {
+            code: 200,
+            status: 'success',
+            message: 'get info landing success',
+            data: result.rows
+          })
+        })
+    } catch (err) {
+      failed(res, {
+        code: 500,
+        status: 'error',
+        message: err.message,
+        error: err
+      })
+    }
   }
 }
 module.exports = chatController
