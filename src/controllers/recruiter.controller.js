@@ -45,7 +45,7 @@ const recruiterController = {
           failed(res, {
             code: 500,
             status: 'failed',
-            message: 'bad request',
+            message: 'bad request1',
             error: err
           })
         })
@@ -53,8 +53,8 @@ const recruiterController = {
       failed(res, {
         code: 500,
         status: 'failed',
-        message: 'bad request',
-        error: err.message
+        message: 'bad request2',
+        error: err
       })
     }
   },
