@@ -4,7 +4,7 @@ const { success, failed } = require('../helpers/response')
 const recruiterController = {
   updateRecruiterData: (req, res) => {
     try {
-      const { name, company, occupation, phone, city, bio, instagram, linkedin } = req.body
+      const { name, company, occupation, phone, city, bio, instagram, linkedin, email, loginId } = req.body
       const recruiterId = req.APP_DATA.tokenDecoded.id
       if (!name) {
         throw Error('Name must be provided')
@@ -22,12 +22,23 @@ const recruiterController = {
               err: []
             })
           } else {
-            success(res, {
-              code: 200,
-              status: 'success',
-              message: 'Update profile successfull',
-              data: []
-            })
+            recruiterModel.updateEmail(loginId, email)
+              .then(() => {
+                success(res, {
+                  code: 200,
+                  status: 'success',
+                  message: 'Update profile successfull',
+                  data: []
+                })
+              })
+              .catch((err) => {
+                failed(res, {
+                  code: 500,
+                  status: 'failed',
+                  message: err.message,
+                  error: err
+                })
+              })
           }
         })
         .catch((err) => {
