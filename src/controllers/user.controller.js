@@ -20,7 +20,7 @@ const userController = {
       const limitPage = limit ? Number(limit) : 3
       const offset = (getPage - 1) * limitPage
       const allData = await userModel.getCountData(name, field, type)
-      const totalData = Number(allData.rows[0].total)
+      const totalData = Number(allData.rowCount)
       const totalPage = Math.ceil(totalData / limitPage)
       userModel.getAllUsers(name, field, type, limitPage, offset)
         .then(async (result) => {

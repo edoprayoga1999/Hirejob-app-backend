@@ -2,7 +2,7 @@ const db = require('../config/db')
 const userModel = {
   getCountData: (name, field, type) => {
     return new Promise((resolve, reject) => {
-      db.query(`SELECT COUNT(*) as total FROM users WHERE LOWER(name) LIKE LOWER('%${name}%') ORDER BY ${field} ${type}`, (err, result) => {
+      db.query(`SELECT * FROM users WHERE LOWER(name) LIKE LOWER('%${name}%') ORDER BY ${field} ${type}`, (err, result) => {
         if (err) {
           reject(err)
         } else {
