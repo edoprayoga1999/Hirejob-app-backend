@@ -5,7 +5,7 @@ const portofolioModel = require('../models/portofolio.model')
 const experienceModel = require('../models/experience.model')
 const { success, failed } = require('../helpers/response')
 const userController = {
-  getAllUsers: (req, res) => {
+  getAllUsers: async (req, res) => {
     try {
       const name = req.query.name || ''
       const type = req.query.type === 'DESC' ? 'DESC' : 'ASC'
@@ -15,8 +15,16 @@ const userController = {
       } else {
         field = 'name'
       }
-      userModel.getAllUsers(name, field, type)
+      const { page, limit } = req.query
+      const getPage = page ? Number(page) : 1
+      const limitPage = limit ? Number(limit) : 3
+      const offset = (getPage - 1) * limitPage
+      const allData = await userModel.getCountData(name, field, type)
+      const totalData = Number(allData.rows[0].total)
+      const totalPage = Math.ceil(totalData / limitPage)
+      userModel.getAllUsers(name, field, type, limitPage, offset)
         .then(async (result) => {
+          const pagination = { page: getPage, data_perPage: limitPage, total_data: totalData, total_page: totalPage }
           const data = await Promise.all(result.rows.map(async (item) => {
             const getSkill = await skillModel.getSkillById(item.id)
             const getPortofolio = await portofolioModel.getPortofolioById(item.id)
@@ -39,7 +47,8 @@ const userController = {
             code: 200,
             status: 'success',
             message: 'get all user success',
-            data
+            data,
+            pagination
           })
         })
         .catch((err) => {
