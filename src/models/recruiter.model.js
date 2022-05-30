@@ -24,18 +24,7 @@ const recruiterModel = {
   },
   getRecruiterDetailById: (id) => {
     return new Promise((resolve, reject) => {
-      db.query('SELECT recruiter.id, login_id, name, email, company, occupation, phone, city, bio, instagram, linkedin, photo FROM recruiter INNER JOIN login ON recruiter.login_id=login.id WHERE recruiter.id = $1', [id], (err, result) => {
-        if (err) {
-          reject(err)
-        } else {
-          resolve(result)
-        }
-      })
-    })
-  },
-  updateEmail: (id, email) => {
-    return new Promise((resolve, reject) => {
-      db.query('UPDATE login set email=$2 WHERE id=$1', [id, email], (err, result) => {
+      db.query('SELECT recruiter.id, name, email, company, occupation, phone, city, bio, instagram, linkedin, photo FROM recruiter INNER JOIN login ON recruiter.login_id=login.id WHERE recruiter.id = $1', [id], (err, result) => {
         if (err) {
           reject(err)
         } else {
