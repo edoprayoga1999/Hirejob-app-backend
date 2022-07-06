@@ -21,6 +21,13 @@ app.use(helmet({
 app.use(xss())
 app.use(bodyParser.json())
 
+app.get('/', (req, res) => {
+  res.json({
+    status: 'OK',
+    message: 'API Service For HireJob'
+  })
+})
+
 app.use(authRoute)
 app.use(userRoute)
 app.use(skillRoute)
