@@ -146,7 +146,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-## Related Sroject
+## Related Project
 
 :rocket: [`Hirejob Front End`](https://github.com/edoprayoga1999/Hirejob-app)
 
