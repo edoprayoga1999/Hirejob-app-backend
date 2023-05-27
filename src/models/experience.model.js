@@ -13,7 +13,7 @@ const experienceModel = {
   },
   addExperience: (userId, photo, position, companyName, startDate, endDate, description) => {
     return new Promise((resolve, reject) => {
-      db.query('INSERT INTO experience (user_id, photo, position, company_name, start_date, end_date, description) VALUES ($1, $2, $3, $4, $5, $6, $7)', [userId, photo, position, companyName, startDate, endDate, description], (err, result) => {
+      db.query('INSERT INTO hirejob.experience (user_id, photo, position, company_name, start_date, end_date, description) VALUES ($1, $2, $3, $4, $5, $6, $7)', [userId, photo, position, companyName, startDate, endDate, description], (err, result) => {
         if (err) {
           reject(err)
         } else {

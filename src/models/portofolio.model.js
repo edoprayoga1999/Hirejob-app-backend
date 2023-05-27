@@ -13,7 +13,7 @@ const portofolioModel = {
   },
   insertPortofolio: (userId, photo, title, projectLink, platform) => {
     return new Promise((resolve, reject) => {
-      db.query('INSERT INTO portofolio (user_id, photo, title, project_link, platform) VALUES ($1, $2, $3, $4, $5)', [userId, photo, title, projectLink, platform], (err, result) => {
+      db.query('INSERT INTO hirejob.portofolio (user_id, photo, title, project_link, platform) VALUES ($1, $2, $3, $4, $5)', [userId, photo, title, projectLink, platform], (err, result) => {
         if (err) {
           reject(err)
         } else {

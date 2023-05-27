@@ -2,7 +2,7 @@ const db = require('../config/db')
 const skillModel = {
   getSkillById: (id) => {
     return new Promise((resolve, reject) => {
-      db.query('SELECT id, name FROM hirejob.skill where user_id=$1', [id], (err, result) => {
+      db.query('SELECT id, name FROM hirejob.skill WHERE user_id=$1', [id], (err, result) => {
         if (err) {
           reject(err)
         } else {
@@ -13,7 +13,7 @@ const skillModel = {
   },
   insertSkill: (userId, skillName) => {
     return new Promise((resolve, reject) => {
-      db.query('INSERT INTO skill (user_id, name) VALUES ($1, $2)', [userId, skillName], (err, result) => {
+      db.query('INSERT INTO hirejob.skill (user_id, name) VALUES ($1, $2)', [userId, skillName], (err, result) => {
         if (err) {
           reject(err)
         } else {
