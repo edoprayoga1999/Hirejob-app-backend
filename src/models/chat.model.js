@@ -2,7 +2,7 @@ const db = require('../config/db')
 const chatModel = {
   getChatToUser: (id) => {
     return new Promise((resolve, reject) => {
-      db.query('SELECT recruiter.name, recruiter.photo, message FROM chat INNER JOIN recruiter ON chat.from_company_id=recruiter.id WHERE to_user_id=$1', [id], (err, result) => {
+      db.query('SELECT recruiter.name, recruiter.photo, message FROM hirejob.chat INNER JOIN recruiter ON chat.from_company_id=recruiter.id WHERE to_user_id=$1', [id], (err, result) => {
         if (err) {
           reject(err)
         } else {
@@ -24,7 +24,7 @@ const chatModel = {
   },
   landingInfo: () => {
     return new Promise((resolve, reject) => {
-      db.query('SELECT * FROM landing WHERE id=1', (err, result) => {
+      db.query('SELECT * FROM hirejob.landing WHERE id=1', (err, result) => {
         if (err) {
           reject(err)
         } else {

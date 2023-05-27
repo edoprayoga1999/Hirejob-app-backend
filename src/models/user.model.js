@@ -2,7 +2,7 @@ const db = require('../config/db')
 const userModel = {
   getCountData: (name, field, type) => {
     return new Promise((resolve, reject) => {
-      db.query(`SELECT * FROM users WHERE LOWER(name) LIKE LOWER('%${name}%') ORDER BY ${field} ${type}`, (err, result) => {
+      db.query(`SELECT * FROM hirejob.users WHERE LOWER(name) LIKE LOWER('%${name}%') ORDER BY ${field} ${type}`, (err, result) => {
         if (err) {
           reject(err)
         } else {
@@ -13,7 +13,7 @@ const userModel = {
   },
   getAllUsers: (name, field, type, limit, offset) => {
     return new Promise((resolve, reject) => {
-      db.query(`SELECT id, name, jobdesk, location, photo, fulltime FROM users WHERE LOWER(name) LIKE LOWER('%${name}%') ORDER BY ${field} ${type} LIMIT ${limit} OFFSET ${offset}`, (err, result) => {
+      db.query(`SELECT id, name, jobdesk, location, photo, fulltime FROM hirejob.users WHERE LOWER(name) LIKE LOWER('%${name}%') ORDER BY ${field} ${type} LIMIT ${limit} OFFSET ${offset}`, (err, result) => {
         if (err) {
           reject(err)
         } else {
@@ -46,7 +46,7 @@ const userModel = {
   },
   getUserDetailById: (id) => {
     return new Promise((resolve, reject) => {
-      db.query('SELECT users.id, name, phone, jobdesk, location, fulltime, description, email, instagram, github, gitlab, photo, company_name FROM users INNER JOIN login ON users.login_id=login.id WHERE users.id = $1', [id], (err, result) => {
+      db.query('SELECT users.id, name, phone, jobdesk, location, fulltime, description, email, instagram, github, gitlab, photo, company_name FROM hirejob.users INNER JOIN login ON users.login_id=login.id WHERE users.id = $1', [id], (err, result) => {
         if (err) {
           reject(err)
         } else {

@@ -2,7 +2,7 @@ const db = require('../config/db')
 const authModel = {
   checkEmailRegistered: (email) => {
     return new Promise((resolve, reject) => {
-      db.query('SELECT COUNT(*) FROM login WHERE email=$1', [email], (err, result) => {
+      db.query('SELECT COUNT(*) FROM hirejob.login WHERE email=$1', [email], (err, result) => {
         if (err) {
           reject(err)
         } else if (result.rows[0].count > 0) {
@@ -48,7 +48,7 @@ const authModel = {
   },
   getLoginId: (email) => {
     return new Promise((resolve, reject) => {
-      db.query('SELECT * FROM login WHERE email=$1', [email], (err, result) => {
+      db.query('SELECT * FROM hirejob.login WHERE email=$1', [email], (err, result) => {
         if (err) {
           reject(err)
         } else {
@@ -59,7 +59,7 @@ const authModel = {
   },
   login: (email) => {
     return new Promise((resolve, reject) => {
-      db.query('SELECT users.id AS id, password, level FROM login INNER JOIN users on login.id=users.login_id WHERE email=$1', [email], (err, result) => {
+      db.query('SELECT users.id AS id, password, level FROM hirejob.login INNER JOIN users on login.id=users.login_id WHERE email=$1', [email], (err, result) => {
         if (err) {
           reject(err)
         } else {
@@ -70,7 +70,7 @@ const authModel = {
   },
   loginRecruiter: (email) => {
     return new Promise((resolve, reject) => {
-      db.query('SELECT recruiter.id AS id, password, level FROM login INNER JOIN recruiter on login.id=recruiter.login_id WHERE email=$1', [email], (err, result) => {
+      db.query('SELECT recruiter.id AS id, password, level FROM hirejob.login INNER JOIN recruiter on login.id=recruiter.login_id WHERE email=$1', [email], (err, result) => {
         if (err) {
           reject(err)
         } else {

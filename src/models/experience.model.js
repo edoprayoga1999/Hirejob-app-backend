@@ -2,7 +2,7 @@ const db = require('../config/db')
 const experienceModel = {
   getExperienceById: (id) => {
     return new Promise((resolve, reject) => {
-      db.query('SELECT id, photo, position, company_name, start_date, end_date, description FROM experience WHERE user_id=$1', [id], (err, result) => {
+      db.query('SELECT id, photo, position, company_name, start_date, end_date, description FROM hirejob.experience WHERE user_id=$1', [id], (err, result) => {
         if (err) {
           reject(err)
         } else {
@@ -24,7 +24,7 @@ const experienceModel = {
   },
   deleteExperience: (id, userId) => {
     return new Promise((resolve, reject) => {
-      db.query('DELETE FROM experience WHERE id=$1 AND user_id=$2', [id, userId], (err, result) => {
+      db.query('DELETE FROM hirejob.experience WHERE id=$1 AND user_id=$2', [id, userId], (err, result) => {
         if (err) {
           reject(err)
         } else {
